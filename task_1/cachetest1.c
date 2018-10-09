@@ -15,16 +15,16 @@ void usage();
 double find_sum(unsigned int, unsigned int, int);
 
 double getTime() {
-  struct timeval t;
-  double sec, msec;
-  
-  while (gettimeofday(&t, NULL) != 0);
-  sec = t.tv_sec;
-  msec = t.tv_usec;
-  
-  sec = sec + msec / 1000000.0;
-  
-  return sec;
+    struct timeval t;
+    double sec, msec;
+
+    while (gettimeofday(&t, NULL) != 0);
+    sec = t.tv_sec;
+    msec = t.tv_usec;
+
+    sec = sec + msec / 1000000.0;
+
+    return sec;
 }
 
 void usage() {
