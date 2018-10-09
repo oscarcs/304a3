@@ -10,7 +10,7 @@
 #include <time.h>
 
 double getTime();
-int* matrix_mul(int* A, int* B, int N);
+double* matrix_mul(double* A, double* B, int N);
 
 double getTime() {
     struct timeval t;
@@ -30,8 +30,8 @@ int main(int argc, char* argv[]) {
     
     int N = 1000;
     
-    int* A = malloc(sizeof(int) * N * N);
-    int* B = malloc(sizeof(int) * N * N);
+    double* A = malloc(sizeof(double) * N * N);
+    double* B = malloc(sizeof(double) * N * N);
 
     // Simple:
     t1 = getTime();
@@ -43,6 +43,12 @@ int main(int argc, char* argv[]) {
 }
 
 // Simple matrix multiplication
-int* matrix_mul(int* A, int* B, int N) {
+double* matrix_mul(double* A, double* B, int N) {
+    double* C = malloc(sizeof(double) * N * N);
 
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+
+        }
+    }
 }
