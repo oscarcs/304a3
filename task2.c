@@ -1,8 +1,16 @@
-/* do not add other includes */
+/**
+ * Oscar Sims
+ * osim082
+ * task 2 - matrix product
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
 #include <time.h>
+
+double getTime();
+
 
 double getTime() {
   struct timeval t;
@@ -16,75 +24,44 @@ double getTime() {
   
   return sec;
 }
- 
-/* for task 1 only */
-void usage(void) {
-	fprintf(stderr, "Usage: cachetest1/2 [--repetitions M] [--array_size N]\n");
-	exit(1);
-}
 
 int main(int argc, char* argv[]) {
     double t1, t2; 
     
-    /* variables for task 1 */
-    unsigned int M = 1000;
-    unsigned int N = 256 * 1024; 
-    unsigned int i;
-        
-    /* declare variables; examples, adjust for task */
-    //int *a;
-    double a[100];
+    int N = 1000;
     
-    /* parameter parsing task 1 */
-    for(i = 1; i < (unsigned) argc; i++) {
-        if (strcmp(argv[i], "--repetitions") == 0) {
-            i++;
-            if (i < argc) {
-                sscanf(argv[i], "%u", &M);
-            }
-            else {
-                usage();
-            }
-        } 
-        else if (strcmp(argv[i], "--array_size") == 0) {
-            i++;
-            if (i < argc) {
-                sscanf(argv[i], "%u", &N);
-            }
-            else {
-                usage();
-            }
-        } 
-        else {
-            usage();
-        } 
-    }
+    int* A = malloc(sizeof(int) * N * N);
+    int* B = malloc(sizeof(int) * N * N);
 
-        
-    /* allocate memory for arrays; examples, adjust for task */
-    //a = malloc (N * sizeof(int));
-
-    /* initialise arrray elements */
-    
-        
+    // Simple:
     t1 = getTime();
-    /* code to be measured goes here */
-    /***************************************/
-        
-        
-        
-        
-    /***************************************/
-    t2 = getTime(); 
-    
-    /* output; examples, adjust for task */
+    matrix_mul_simple(A, B, N);
+    t2 = getTime();    
     printf("time: %6.2f secs\n",(t2 - t1));
 
-    /* IMPORTANT: also print the result of the code, e.g. the sum, 
-    * otherwise compiler might optimise away the code */
-    
-    /* free memory; examples, adjust for task */
-    //free(a);
+    // With temporary:
+    t1 = getTime();
+    matrix_mul_temporary(A, B, N);
+    t2 = getTime();    
+    printf("time: %6.2f secs\n",(t2 - t1));
+
+    // With blocking
+    t1 = getTime();
+    matrix_mul_blocking(A, B, N);
+    t2 = getTime();
+    printf("time: %6.2f secs\n",(t2 - t1));
 
     return 0;  
+}
+
+int* matrix_mul_simple(int* A, int* B, int N) {
+
+}
+
+int* matrix_mul_temporary(int* A, int* B, int N) {
+
+} 
+
+int* matrix_mul_blocking(int* A, int* B, int N) {
+
 }
