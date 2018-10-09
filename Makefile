@@ -1,16 +1,11 @@
-OPT = -O1
+SUBDIRS = task_1 task_2
 
-default: assignment
-
-assignment: task1 task2
-
-task1:
-	gcc task1.c $(OPT) -o task1
-
-task2:
-	gcc task2.c $(OPT) -o task2
+default: 
+	for dir in $(SUBDIRS); do \
+        $(MAKE) -C $$dir; \
+    done
 
 clean:
-	rm -f task1
-	rm -f task2
-
+	for dir in $(SUBDIRS); do \
+        $(MAKE) clean -C $$dir; \
+    done

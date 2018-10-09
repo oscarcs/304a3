@@ -10,7 +10,7 @@
 #include <time.h>
 
 double getTime();
-
+int* matrix_mul(int* A, int* B, int N);
 
 double getTime() {
   struct timeval t;
@@ -35,33 +35,14 @@ int main(int argc, char* argv[]) {
 
     // Simple:
     t1 = getTime();
-    matrix_mul_simple(A, B, N);
+    matrix_mul(A, B, N);
     t2 = getTime();    
-    printf("time: %6.2f secs\n",(t2 - t1));
-
-    // With temporary:
-    t1 = getTime();
-    matrix_mul_temporary(A, B, N);
-    t2 = getTime();    
-    printf("time: %6.2f secs\n",(t2 - t1));
-
-    // With blocking
-    t1 = getTime();
-    matrix_mul_blocking(A, B, N);
-    t2 = getTime();
     printf("time: %6.2f secs\n",(t2 - t1));
 
     return 0;  
 }
 
-int* matrix_mul_simple(int* A, int* B, int N) {
-
-}
-
-int* matrix_mul_temporary(int* A, int* B, int N) {
-
-} 
-
-int* matrix_mul_blocking(int* A, int* B, int N) {
+// Matrix multiplication with temporary copy
+int* matrix_mul(int* A, int* B, int N) {
 
 }

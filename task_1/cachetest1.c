@@ -74,11 +74,11 @@ int main(int argc, char* argv[]) {
     printf("time per iteration: %6.2f\n", time_per_iteration);
 
     // Random:
-    printf("\nrandom:\n");
-    t2 = find_sum(N, M, 1);
-    printf("time: %6.2f secs\n",t2);
-    time_per_iteration = (t2 / M) * 1000000000;
-    printf("time per iteration: %6.2f\n", time_per_iteration);
+    // printf("\nrandom:\n");
+    // t2 = find_sum(N, M, 1);
+    // printf("time: %6.2f secs\n", t2);
+    // time_per_iteration = (t2 / M) * 1000000000;
+    // printf("time per iteration: %6.2f\n", time_per_iteration);
     
     printf("\n\n");
 
@@ -103,15 +103,15 @@ double find_sum(unsigned int N, unsigned int M, int random) {
     }
 
     // Randomize b[]
-    if (random) {
-        for (unsigned int i = 0; i < 2 * N; i++) {
-            unsigned int x = rand() % N;
-            unsigned int y = rand() % N;
-            unsigned int temp = b[x];
-            b[x] = b[y];
-            b[y] = temp; 
-        }
-    }
+    // if (random) {
+    //     for (unsigned int i = 0; i < 2 * N; i++) {
+    //         unsigned int x = rand() % N;
+    //         unsigned int y = rand() % N;
+    //         unsigned int temp = b[x];
+    //         b[x] = b[y];
+    //         b[y] = temp; 
+    //     }
+    // }
 
     t1 = getTime();
 
