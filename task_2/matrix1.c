@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
  * Takes two single-dimensional arrays.
  */
 double* matrix_mul(double* A, double* B, int N) {
-    double* C = malloc(sizeof(double) * N * N);
+    double* C = calloc(N*N, sizeof(double));
 
     // Simplest matrix multiplication algorithm.
     // A very easy speedup could be obtained by swapping the order of the loops.

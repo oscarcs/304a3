@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
 
 // Matrix multiplication with blocking
 double* matrix_mul(double* A, double* B, int N) {
-    double* C = malloc(sizeof(double) * N * N);
+    double* C = calloc(N*N, sizeof(double));
 
     // Set the block size based on the cache line size:
     int block_size = 16;

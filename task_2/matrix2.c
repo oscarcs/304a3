@@ -48,8 +48,8 @@ int main(int argc, char* argv[]) {
 
 // Matrix multiplication with temp copy
 double* matrix_mul(double* A, double* B, int N) {
-    double* T = malloc(sizeof(double) * N * N);
-    double* C = malloc(sizeof(double) * N * N);
+    double* T = calloc(N*N, sizeof(double));
+    double* C = calloc(N*N, sizeof(double));
 
     // Transpose matrix b:
     for (int i = 0; i < N; i++) {
