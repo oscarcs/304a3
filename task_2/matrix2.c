@@ -61,12 +61,9 @@ double* matrix_mul(double* A, double* B, int N) {
     // Perform multiply (accounting for transposition)
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            double sum = 0;
-            
             for (int k = 0; k < N; k++) {
-                sum += A[N*i+k] * T[k+j*N];
+                C[N*i+j] += A[N*i+k] * T[k+j*N];
             }
-            C[N*i+j] = sum;
         }
     }
 
