@@ -33,9 +33,13 @@ int main(int argc, char* argv[]) {
     double* A = malloc(sizeof(double) * N * N);
     double* B = malloc(sizeof(double) * N * N);
 
-    // Simple:
+    for (int i = 0; i < N * N; i++) {
+        A[i] = rand() % 3 + 1;
+        B[i] = rand() % 3 + 1;
+    }
+
     t1 = getTime();
-    matrix_mul(A, B, N);
+    double* C = matrix_mul(A, B, N);
     t2 = getTime();    
     printf("time: %6.2f secs\n",(t2 - t1));
 
@@ -44,6 +48,28 @@ int main(int argc, char* argv[]) {
 
 // Matrix multiplication with temp copy
 double* matrix_mul(double* A, double* B, int N) {
+    double* T = malloc(sizeof(double) * N * N);
     double* C = malloc(sizeof(double) * N * N);
 
+    // Transpose matrix b:
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            T[i+j*N] = B[N*i+j];
+        }
+    }
+
+    // Perform multiply (accounting for transposition)
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            double sum = 0;
+            
+            for (int k = 0; k < N; k++) {
+                sum += A[N*i+k] * T[k+j*N];
+            }
+            C[N*i+j] = sum;
+        }
+    }
+
+    free(T);
+    return C;
 }
