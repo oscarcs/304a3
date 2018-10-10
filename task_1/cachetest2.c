@@ -12,7 +12,7 @@
 
 double getTime();
 void usage();
-double find_sum(unsigned int, unsigned int, int);
+double find_sum(unsigned int, unsigned int);
 
 double getTime() {
     struct timeval t;
@@ -66,29 +66,20 @@ int main(int argc, char* argv[]) {
 
     printf("running %u iterations of array size %u...\n", M, N);
 
-    // Sequential:
-    // printf("\nsequential:\n");
-    // t1 = find_sum(N, M, 0); 
-    // printf("time: %6.2f secs\n", t1);
-    // time_per_iteration = (t1 / M) * 1000000000;
-    // printf("time per iteration: %6.2f\n", time_per_iteration);
-
     // Random:
-    printf("\nrandom:\n");
-    t2 = find_sum(N, M, 1);
+    printf("random:\n");
+    t2 = find_sum(N, M);
     printf("time: %6.2f secs\n", t2);
-    time_per_iteration = (t2 / M) * 1000000000;
-    printf("time per iteration: %6.2f\n", time_per_iteration);
+    time_per_iteration = ((t2 / M) * 1000000000) / N;
+    printf("time per iteration: %2.6f\n", time_per_iteration);
     
-    printf("\n\n");
-
     return 0;  
 }
 
 /*
  * Find the sum of an array of size N, M times.
  */
-double find_sum(unsigned int N, unsigned int M, int random) {
+double find_sum(unsigned int N, unsigned int M) {
     double t1, t2;
     unsigned int sum = 0;
     
@@ -103,14 +94,12 @@ double find_sum(unsigned int N, unsigned int M, int random) {
     }
 
     // Randomize b[]
-    if (random) {
-        for (unsigned int i = 0; i < 2 * N; i++) {
-            unsigned int x = rand() % N;
-            unsigned int y = rand() % N;
-            unsigned int temp = b[x];
-            b[x] = b[y];
-            b[y] = temp; 
-        }
+    for (unsigned int i = 0; i < 2 * N; i++) {
+        unsigned int x = rand() % N;
+        unsigned int y = rand() % N;
+        unsigned int temp = b[x];
+        b[x] = b[y];
+        b[y] = temp; 
     }
 
     t1 = getTime();

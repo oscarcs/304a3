@@ -62,16 +62,13 @@ int main(int argc, char* argv[]) {
 double* matrix_mul(double* A, double* B, int N) {
     double* C = malloc(sizeof(double) * N * N);
 
+    // Simplest matrix multiplication algorithm.
+    // A very easy speedup could be obtained by swapping the order of the loops.
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            double sum = 0;
-            
             for (int k = 0; k < N; k++) {
-                // Sum <- Sum + A(i,k) * B(k,j)
-                sum += A[N*i+k] * B[N*k+j];
+                C[N*i+j] += A[N*i+k] * B[N*k+j];
             }
-            // C(i,j) <- Sum
-            C[N*i+j] = sum;
         }
     }
 
