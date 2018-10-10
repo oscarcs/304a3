@@ -1,4 +1,4 @@
-OPT = -O1
+OPT = -O1 -ggdb
 
 default: assignment
 
